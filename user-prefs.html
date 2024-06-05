@@ -19,7 +19,7 @@
             <label for="email">E-mail:</label>
             <input type="email" id="email" name="email" />
 
-            <label for="age"> Age: <span id="sAge">22</span> </label>
+            <label for="age"> Age: <span id="Age">22</span> </label>
             <input type="range" id="age" name="age" step="1" min="18" max="120" value="22"
                 oninput="onShowAge(this.value)" />
 
@@ -40,11 +40,13 @@
         </form>
         <section class="set-bt">
             <button form="frmRegister">Set Me</button>
+            <a href="./index.html"><button>back to the main page </button></a>
         </section>
     </main>
 
-    <script src="./js/controllers/userprefs.controller.js"></script>
     <script src="./js/service/localstorge.js"></script>
+    <script src="./js/service/userprefs.service.js"></script>
+    <script src="./js/controllers/userprefs.controller.js"></script>
 </body>
 
 </html>

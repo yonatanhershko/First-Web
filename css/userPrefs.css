@@ -5,12 +5,14 @@
 body {
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
+    background-color: #252525;
+    color:#FFFAFA;
 }
 
 main {
 
     display: inline-block;
-    background-color: aquamarine;
+    background-color: #2F3651;
     padding: 15px;
     width: 350px;
     border-radius: 15px;

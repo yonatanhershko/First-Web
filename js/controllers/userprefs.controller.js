@@ -2,38 +2,44 @@
 
 'use strict'
 
-const user = {
-    email : '',
-    txtColor : '',
-    bgColor : '',
-    Age : '',
-    birthDate: '',
-    birthTime: ''
-    }
+
+// function onInit() {
+//     if (loadFromStorage ('UserPrefs')  ===  null ) return
+//    const elBody = document.querySelector('body') 
+//    elBody.style.color = user.txtColor
+//    elBody.style.backgroundColor = user.bgColor
+// }
 
 function onShowAge(newVal) {
-    document.querySelector('#sAge').innerHTML = newVal
+    document.querySelector('#Age').innerHTML = newVal
 }
+
+
+
 
 function onSubmit(ev) {
     ev.preventDefault()
-    const { email, textColor, bgColor, dob, tob} = ev.target
-    user.email = email.value
-    user.email = email.value;
-    user.txtColor = textColor.value;
-    user.bgColor = bgColor.value;
-    user.birthDate = dob.value;
-    user.Age = age.value;
-    user.birthTime = tob.value;
-    
+    const { email, textColor, bgColor,age, dob, tob } = ev.target
+
+
+    const user = {
+        email:email.value,
+        textColor:textColor.value,
+        bgColor:bgColor.value,
+        age:age.value,
+        birthDate: dob.value,
+        birthTime : tob.value,
+    }
+
+    // user.email = email.value
+    // user.textColor = textColor.value;
+    // user.bgColor = bgColor.value;
+    // user.birthDate = dob.value;
+    // user.age = age.value;
+    // user.birthTime = tob.value;
+
     console.log(user);
-    _saveData()
+    saveUser(user)
 }
 
 
-
-
-
-function _saveData() {
-    saveToStorage('User Date', user)
-}
