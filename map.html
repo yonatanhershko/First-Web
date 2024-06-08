@@ -2,13 +2,15 @@
 <html>
 
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
     <title>HTML5 Geolocation</title>
     <link rel="stylesheet" href="./css/map.css" />
 
 </head>
 
-<body onload="getPosition()">
-
+<body onload="onInit()">
 
     <div class="nav-bar-container">
         <nav class="header-btn">
@@ -27,33 +29,31 @@
     <h1>GPS</h1>
 <h2> click the places you want to save 🐨</h2>
 
-    <p id="locationError"></p>
+    <main>
 
-    <div class="map" style="width:80%;height:400px;"></div>
+        <section class="map-container">
+        </section>
+    
+        <section class="places-container">
+          <h4>Places: 📍</h4>
+          <ul class="places-list"></ul>
+        </section>
+    
+      </main>
+    
+      <div class="modal">
+        <form onsubmit="">
+          <label for="placeName">Enter Name</label>
+          <input type="text" name="placeName" id="placeName" placeholder="Add Place..." />
+          <button>Add</button>
+        </form>
+      </div>
+    
 
-    <table>
-        <tr>
-            <td>Latitude</td>
-            <td id="latitude"></td>
-        </tr>
-        <tr>
-            <td>Longitude</td>
-            <td id="longitude"></td>
-        </tr>
-        <tr>
-            <td>Accuracy</td>
-            <td id="accuracy"></td>
-        </tr>
-        <tr>
-            <td>Timestamp</td>
-            <td id="timestamp"></td>
-        </tr>
-    </table>
-
-    <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh-xhaM8E4baaSLUuIQSBY2oVxKziNIwk&loading=async&callback=initMap">
-</script>
-
+      <script async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh-xhaM8E4baaSLUuIQSBY2oVxKziNIwk&loading=async&callback=initMap">
+  </script>
+<script src="./js/service/util.service.js"></script>
 <script src="./js/service/placeservice.js"></script>
     <script src="./js/controllers/map.controller.js"></script>
 

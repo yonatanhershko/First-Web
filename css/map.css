@@ -38,6 +38,7 @@ button {
     scale: 1;
     color: black;
     transition: 600ms ease-out;
+  
 }
 
 button:hover {
@@ -46,45 +47,13 @@ button:hover {
     color: rgb(181, 191, 252);
 }
 
-
-
-table {
-   width:50%;
-    margin: 60px auto;
-
-    border-inline-end: 1px solid lightgray;
-    border-block-end: 1px solid lightgray;
-    border-spacing: 0;
-
-    font-size: 1.5em;
-    cursor: pointer;
+li{
+    list-style-type: none;
 }
 
-tbody tr:nth-child(odd) {
-    background-color: #9bc4cbff;
-    color: #9b2915ff;
-}
+.map-container {
 
-tbody tr:nth-child(even) {
-    background-color: var(--clr2);
-    color: var(--clr1);
-}
-
-td {
-    height: 40px;
-    padding: 5px 25px;
-    transition: background-color 400ms;
-    border-inline-start: 1px solid lightgray;
-    border-block-start: 1px solid lightgray;
-}
-
-td:hover {
-    background-color: lightgray;
-}
-
-.map {
-
-    width: 70vw;
-    height: 40vh;
+    width: 50vw;
+    height: 70vh;
     margin: 0 auto;
 }

@@ -1,93 +1,101 @@
 'use strict'
 
+let gMap = null//1
+let gMarkers = []
+let gCoords
 
 
-function onInit() {}
-
-function renderPlaces() {}
-
-function onRemovePlace(placeId) {}
-
-
-
-
-
-
-
-function mapReady() {
-    console.log('Map is ready')
+function onInit() {
+    initMap()
+    renderPlaces()
+    console.log('hh');
 }
 
-function getPosition() {
-
-    if (!navigator.geolocation) {
-        alert('HTML5 Geolocation is not supported in your browser')
-        return
-    }
-
-    // One shot position retrieval...
-    navigator.geolocation.getCurrentPosition(showLocation, handleLocationError)
-
-    // ...or continous watch
-    // navigator.geolocation.watchPosition(showLocation, handleLocationError)
-}
-
-function showLocation(position) {
-
-    console.log(position)
-    const { latitude: lat, longitude: lng, accuracy } = position.coords
-
-    document.getElementById("latitude").innerHTML = lat
-    document.getElementById("longitude").innerHTML = lng
-    document.getElementById("accuracy").innerHTML = accuracy
-
-    var date = new Date(position.timestamp)
-    document.getElementById("timestamp").innerHTML = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
-
-    initMap(lat, lng)
-}
-
-function initMap(lat = 32.1627397, lng = 35.1199204) {
-    var elMap = document.querySelector('.map')
-
-    var options = {
-        center: { lat, lng },
-        // center: { lat: 32.1627397, lng: 35.1199204 },
-        zoom: 15
-    }
-
-    var map = new google.maps.Map(
-        elMap,
-        options
+//also 1 first render it
+function renderPlaces() {
+    const places = getPlaces()
+    const strHtmls = places.map(place => `
+              <li>${place.name}
+              <button onclick="onRemovePlace('${place.id}')">X</button>
+              <button onclick="onPanToPlace('${place.id}')">Go</button>
+              </li>`
     )
 
-    var marker = new google.maps.Marker({
-        position: { lat, lng },
-        // position: { lat: 32.1627397, lng: 35.1199204 },
-        map,
-        title: 'Hello World!'
+    document.querySelector('.places-list').innerHTML = strHtmls.join('')
+}
+
+
+
+function initMap() {
+    const elMap = document.querySelector('.map-container')
+    const defaultLoc = { lat: 29.5503645, lng: 34.9522761 }
+
+    gMap = new google.maps.Map(elMap, {
+        zoom: 8,
+        center: defaultLoc,
     })
 
+    // var marker = new google.maps.Marker({
+    //     position: { lat: 29.5503645, lng:  34.9522761 },
+    //     title: ' test marker'
+    // }
+    // )
+    // marker.setMap( gMap)
+
+    // console.log('gMap:', gMap)
+
+    gMap.addListener('click', ev => {
+        const name = prompt('Place name?', 'Place 1')
+        const lat = ev.latLng.lat()
+        const lng = ev.latLng.lng()
+        addPlace(name, lat, lng, gMap.getZoom())
+        renderPlaces()
+    })
+
+    // const locationButton = document.createElement('button')
+    // locationButton.innerText = 'Click to go home 🏡'
+    // locationButton.classList.add('custom-map-control-button')
+    // gMap.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton)
+    // locationButton.addEventListener('click', onPanToUserLoc)
+
+    // renderMarkers()
 }
 
-function handleLocationError(error) {
-    var locationError = document.getElementById("locationError")
 
-    switch (error.code) {
-        case 0:
-            locationError.innerHTML = "There was an error while retrieving your location: " + error.message
-            break
-        case 1:
-            locationError.innerHTML = "The user didn't allow this page to retrieve a location."
-            break
-        case 2:
-            locationError.innerHTML = "The browser was unable to determine your location: " + error.message
-            break
-        case 3:
-            locationError.innerHTML = "The browser timed out before retrieving the location."
-            break
-    }
+
+// function onRemovePlace(placeId) {
+//     const place = getPlaceById(placeId)
+//     gMap.setCenter({ lat: place.lat, lng: place.lng })
+//     gMap.setZoom(place.zoom)
+// }
+
+
+function onPanToPlace(placeId) {
+    const place = getPlaceById(placeId)
+    gMap.setCenter({ lat: place.lat, lng: place.lng })
+    gMap.setZoom(place.zoom)
 }
 
+
+//$ 4
+function onRemovePlace(placeId) {
+    removePlace(placeId)
+    renderPlaces()
+    // renderMarkers()
+}
+
+function renderMarkers() {
+    const places = getPlaces()
+    // remove previous markers
+    gMarkers.forEach(marker => marker.setMap(null))
+    // every place is creating a marker
+    gMarkers = places.map(place => {
+        return new google.maps.Marker({
+            position: place,
+            map: gMap,
+            title: place.name
+        })
+    })
+}
 
 
