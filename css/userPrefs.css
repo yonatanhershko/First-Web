@@ -9,6 +9,43 @@ body {
     color:#FFFAFA;
 }
 
+
+.nav-bar-container {
+
+    background-color: rgb(185, 225, 240);
+    margin-top: auto;
+
+    ;
+}
+
+.header-btn {
+    display: flex;
+    flex-direction: column;
+    flex-direction: row-reverse;
+    margin-block: -1%;
+    gap: 20px;
+
+}
+
+button {
+    position: relative;
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+    scale: 1;
+    color: black;
+    transition: 600ms ease-out;
+}
+
+button:hover {
+    cursor: pointer;
+    scale: 1.1;
+    color: rgb(181, 191, 252);
+}
+
+
+
 main {
 
     display: inline-block;

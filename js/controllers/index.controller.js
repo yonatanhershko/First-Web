@@ -2,7 +2,7 @@
 
 
 function onInit() {
-    const user =  loadFromStorage(STORGE_USER)
+    const user =  loadFromStorage(STORGE_USER)// all the info that i saved here goes t this const
     console.log(user)// 
     // if (loadFromStorage (STORGE_USER, user)  ===  null ) return
    const elBody = document.querySelector('body') 

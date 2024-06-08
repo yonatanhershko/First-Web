@@ -2,12 +2,51 @@
     box-sizing: border-box;
 }
 
+
+
 body {
     background-color: #252525;
     color:#FFFAFA;
     font-family: Arial, Helvetica, sans-serif;
    text-align: center;
 }
+
+
+.nav-bar-container {
+
+    background-color: rgb(185, 225, 240);
+    margin-top: auto;
+
+    ;
+}
+
+.header-btn {
+    display: flex;
+    flex-direction: column;
+    flex-direction: row-reverse;
+    margin-block: -1%;
+    gap: 20px;
+
+}
+
+button {
+    position: relative;
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+    scale: 1;
+    color: black;
+    transition: 600ms ease-out;
+}
+
+button:hover {
+    cursor: pointer;
+    scale: 1.1;
+    color: rgb(181, 191, 252);
+}
+
+
 
 table {
    width:50%;

@@ -3,13 +3,6 @@
 'use strict'
 
 
-// function onInit() {
-//     if (loadFromStorage ('UserPrefs')  ===  null ) return
-//    const elBody = document.querySelector('body') 
-//    elBody.style.color = user.txtColor
-//    elBody.style.backgroundColor = user.bgColor
-// }
-
 function onShowAge(newVal) {
     document.querySelector('#Age').innerHTML = newVal
 }

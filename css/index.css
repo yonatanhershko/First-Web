@@ -1,27 +1,39 @@
 body {
     text-align: center;
-    
+
 }
 
-.header-btn{
-    display: inline-block;
-    max-width: 30%;
-    margin: auto;
-    display: flex;
-    justify-content:space-between;
-    
+
+.nav-bar-container {
+
+    background-color: rgb(185, 225, 240);
+    margin-top: auto;
+
+    ;
 }
+
+.header-btn {
+    display: flex;
+    flex-direction: column;
+    flex-direction: row-reverse;
+    margin-block: -1%;
+    gap: 20px;
+
+}
+
 button {
     position: relative;
-    background-color: rgb(185, 224, 255);
+    background-color: transparent;
     border: none;
     padding: 10px;
     font-weight: bold;
-    top: 0;
+    scale: 1;
+    color: black;
     transition: 600ms ease-out;
 }
 
 button:hover {
     cursor: pointer;
-    top: -15px;
+    scale: 1.1;
+    color: rgb(181, 191, 252);
 }

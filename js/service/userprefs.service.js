@@ -1,6 +1,5 @@
 'user strict'
 
-
 const STORGE_USER = 'UserPrefs'
 
 function saveUser(user){
