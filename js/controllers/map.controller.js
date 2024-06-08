@@ -4,11 +4,10 @@ let gMap = null//1
 let gMarkers = []
 let gCoords
 
-
 function onInit() {
     initMap()
     renderPlaces()
-    console.log('hh');
+    // console.log('hh');
 }
 
 //also 1 first render it
@@ -23,8 +22,6 @@ function renderPlaces() {
 
     document.querySelector('.places-list').innerHTML = strHtmls.join('')
 }
-
-
 
 function initMap() {
     const elMap = document.querySelector('.map-container')
@@ -52,23 +49,27 @@ function initMap() {
         renderPlaces()
     })
 
-    // const locationButton = document.createElement('button')
-    // locationButton.innerText = 'Click to go home 🏡'
-    // locationButton.classList.add('custom-map-control-button')
-    // gMap.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton)
-    // locationButton.addEventListener('click', onPanToUserLoc)
+    const locationButton = document.createElement('button')
+    locationButton.innerText = 'home🐲'
+    locationButton.classList.add('custom-map-control-button')
+    gMap.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton)
+    locationButton.addEventListener('click', onPanToUserLoc)
 
-    // renderMarkers()
+    renderMarkers()
 }
 
+function onPanToUserLoc() {
+    navigator.geolocation.getCurrentPosition(setCenterToUserLoc, handleLocationError)
+  }
 
-
-// function onRemovePlace(placeId) {
-//     const place = getPlaceById(placeId)
-//     gMap.setCenter({ lat: place.lat, lng: place.lng })
-//     gMap.setZoom(place.zoom)
-// }
-
+  function setCenterToUserLoc({ coords }) { // location
+    const { latitude: lat, longitude: lng } = coords
+    gMap.setCenter({ lat, lng })
+  }
+  
+  function handleLocationError() {
+    alert('Problem getting your location ')
+  }
 
 function onPanToPlace(placeId) {
     const place = getPlaceById(placeId)
@@ -76,12 +77,11 @@ function onPanToPlace(placeId) {
     gMap.setZoom(place.zoom)
 }
 
-
 //$ 4
 function onRemovePlace(placeId) {
     removePlace(placeId)
     renderPlaces()
-    // renderMarkers()
+    renderMarkers()
 }
 
 function renderMarkers() {

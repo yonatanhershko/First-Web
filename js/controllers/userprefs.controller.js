@@ -1,14 +1,9 @@
 
-
 'use strict'
-
 
 function onShowAge(newVal) {
     document.querySelector('#Age').innerHTML = newVal
 }
-
-
-
 
 function onSubmit(ev) {
     ev.preventDefault()
